@@ -1,0 +1,41 @@
+Immatriculation,Modele,Exploitant,Tache,Equipe,Cout
+F-FRAN,A350,Air France,Peinture,4,1500
+F-ABCD,A350,Air France,Peinture,4,1500
+D-ABCD,A380,Lufthansa,Check C,5,19000
+TC-TUR,B777,Turkish Airlines,Peinture,3,1700
+A7-QAT,B737,Quatar Airways,Check D,3,120000
+A7-QAT,B737,Quatar Airways,Peinture,2,1200
+EI-IRL,B737,Ryanair,Check C,2,12000
+G-BRIT,A380,British Airways,Peinture,4,1900
+A7-ABC,B737,Quatar Airways,Check C,4,12000
+G-ABCD,A350,British Airways,Check C,5,15000
+B-1901,A350,Air China,Check D,4,150000
+B-1901,A350,Air China,Peinture,3,1500
+G-EFGH,B777,British Airways,Check C,4,17000
+A7-DEF,A380,Quatar Airways,Check C,2,19000
+D-ALLE,B777,Lufthansa,Check C,3,17000
+D-ALLE,B777,Lufthansa,Peinture,2,1700
+A7-HIJ,A350,Quatar Airways,Peinture,4,1500
+TC-DEF,A319,Turkish Airlines,Check D,2,100000
+TC-DEF,A319,Turkish Airlines,Peinture,5,1000
+TC-ABC,B777,Turkish Airlines,Peinture,5,1700
+F-ABCD,A319,Air France,Peinture,2,1000
+F-EFGH,A350,Air France,Check C,1,15000
+F-EFGH,A350,Air France,Peinture,1,1500
+D-EFGH,A319,Lufthansa,Peinture,1,1000
+A7-OPQ,B777,Quatar Airways,Peinture,2,1700
+G-IJKL,A319,British Airways,Check C,4,10000
+TC-HIJ,A350,Turkish Airlines,Check C,1,15000
+F-HIJK,B777,Air France,Check C,1,17000
+F-HIJK,B777,Air France,Peinture,2,1700
+EI-ABC,B737,Ryanair,Check D,1,120000
+A7-KLM,A350,Quatar Airways,Peinture,3,1500
+A7-RST,A380,Quatar Airways,Peinture,5,1900
+F-LMNO,A350,Air France,Check C,1,15000
+F-QRST,B777,Air France,Peinture,1,1700
+B-1977,B737,Air China,Check C,5,12000
+B-1977,B737,Air China,Peinture,5,1200
+TC-KLM,B737,Turkish Airlines,Check D,2,120000
+TC-KLM,B737,Turkish Airlines,Peinture,4,1200
+D-HIJK,A319,Lufthansa,Peinture,3,1000
+D-HIJL,A319,Lufthansa,Check C,5,10000
