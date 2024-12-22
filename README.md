@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gestion de données
 
-## Getting Started
+Application de gestion de données. Permet de gérer des données dans une base de données SQLite.
+Le front-end est réalisé en React + TypeScript et le back-end en NodeJS/Express.
+La partie interface est entièrement modulaire, aucune valeur, donnée, nom de table etc... n'est codé en dur,
+pour ajouter une colonne par exemple, seuelement la base de données et l'API doivent être modifiées.
 
-First, run the development server:
+## Fonctionnalités
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Ajout, modification et suppression des entrées
+- Ajout, modification et suppression des références
+- Tri des colonnes
+- Filtre text input choix 'contient' ou 'commence par'
+- Support du filtre sur des valeurs numériques (\> < \>= <= =)
+
+## Schéma de la base de données
+
+La base de données utilisée est dans `maintenance.sqlite`,
+
+`maintenance_default.sqlite` est la version par défaut telle qu'elle donnée dans le moodle (une fois le `.xls` converti en `.csv` dans Excel puis en `.sqlite` grâce aux scripts dans `./scripts/csv_to_db.py`).
+
+Le schéma de la base de données est le suivant:
+
+![Schéma de la base de données](doc/db_schema.png)
+
+le script de création de la base de données est le suivant:
+
+```sql
+CREATE TABLE Exploitants (id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(32) NOT NULL);
+CREATE TABLE Modeles (id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(32) NOT NULL);
+CREATE TABLE Taches (id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(32) NOT NULL);
+
+CREATE TABLE Avions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    imatriculation VARCHAR(16) NOT NULL,
+    Modele_FK INTEGER NOT NULL,
+    Exploitant_FK INTEGER NOT NULL,
+    FOREIGN KEY (Modele_FK) REFERENCES Modeles(id)
+    FOREIGN KEY (Exploitant_FK) REFERENCES Exploitants(id)
+);
+
+CREATE TABLE Maintenances (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cout NUMERIC NOT NULL,
+    Avion_FK INTEGER NOT NULL,
+    Tache_FK INTEGER NOT NULL,
+    FOREIGN KEY (Avion_FK) REFERENCES Avions(id),
+    FOREIGN KEY (Tache_FK) REFERENCES Taches(id)
+);
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Interface
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+L'interface et l'API sont faites sur JavaScript/TypeScript, React et NodeJS/Express respectivement.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Installation
 
-## Learn More
+### Prérequis
 
-To learn more about Next.js, take a look at the following resources:
+- NodeJS
+- npm
+- SQLite
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Cloner le dépôt
+2. Installer les dépendances du front-end et du back-end
+3. Lancer le serveur
 
-## Deploy on Vercel
+```bash
+git clone
+cd gestion-donnees
+npm install
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Variables d'environnement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+La configuration de l'application se fait via des variables d'environnement.
+Créer un fichier `.env` à la racine du projet et ajouter les variables suivantes:
+
+```bash
+PASSWORD="MY_PASSWORD"
+JWT_SECRET="MY_SECRET"
+TOKEN_LIFETIME=3600000
+HTTPS=false
+```
+
+

@@ -4,6 +4,6 @@
 - [x] Filtre text input choix 'contient' ou 'commence par'
 - [x] Ajout, modification et suppression des entrées
 - [x] Requêtes database
+- [X] Modifier/supprimer les entrées des tables de référence.
 - [ ] Filtre secondaire ?
-- [ ] Modifier/supprimer les entrées des tables de référence.
 - [ ] Reset de database
