@@ -1,0 +1,151 @@
+.list {
+    flex-grow: 1;
+    width: 100%;
+    max-height: 100%;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 0.3em 0;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+
+    > div:first-child:not(.no_elements) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 0.2em 1em;
+        --border-2sides: 2px solid #999;
+        border-bottom: var(--border-2sides);
+
+        > button {
+            font-size: 1em;
+            font-weight: 600;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            width: 20em;
+            margin: 0;
+            padding: 0.5em 0;
+            text-align: center;
+            color: white;
+        }
+    }
+
+    .no_elements {
+        width: 100%;
+        text-align: center;
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            width: 5em;
+            height: 5em;
+        }
+    }
+    
+
+    .elements_container {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        height: 100%;
+        padding-bottom: 10em;
+        scrollbar-color: #afafaf #0c0c0c;
+        scrollbar-width: thin;
+
+        .list_element[data-selected="true"] {
+            background-color: #202020;
+            // color: #d6d6d6;
+        }
+
+        .list_element {
+            display: flex;
+            background-color: transparent;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            position: relative;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 0 1em;
+            --border-2sides: 1px solid #494949;
+            border-bottom: var(--border-2sides);
+
+            p {
+                width: 20em;
+                margin: 0;
+                padding: 0.5em 0;
+                text-align: center;
+            }
+        
+            > div {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                align-items: flex-start;
+                justify-content: flex-end;
+        
+                > input[type="radio"] {
+                    position: absolute;
+                    transform: scale(1.5) translate(10%, -25%);
+                    top: 0;
+                    opacity: 0;
+                    z-index: 2;
+                    cursor: pointer;
+                }
+        
+                > .radio_button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    --radius: 17px;
+                    width: var(--radius);
+                    height: var(--radius);
+                    background-color: transparent;
+                    border: 1px solid #999;
+                    border-radius: 50%;
+                    transition: background-color 0.1s;
+    
+        
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        // display: none;
+                        display: block;
+                        --radius: 10px;
+                        width: var(--radius);
+                        height: var(--radius);
+                        background-color: #d6d6d6;
+                        border-radius: 50%;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%) scale(0.4);
+                        opacity: 0;
+                        transition: transform 0.1s, opacity 0.1s;
+                    }
+                }
+
+                > input:hover ~ .radio_button {
+                    background-color: #353535;
+                }
+        
+                > input:checked ~ .radio_button {
+                    background-color: #353535;
+        
+                    &::after {
+                        transform: translate(-50%, -50%) scale(1);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

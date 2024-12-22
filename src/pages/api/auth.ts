@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { timingSafeEqual } from 'crypto';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import check_token from 'lib/auth';
+import check_token from 'lib/cookie_auth';
 
 dotenv.config();
 
@@ -25,12 +26,12 @@ export default async function loginHandler(req: NextApiRequest, res: NextApiResp
                 return res.status(400).json({ error: 'Missing entries' });
             }
         
-            if (password !== correctPassword) {
+            if (!safe_compare(password, correctPassword)) {
                 return res.status(401).json({ error: 'Invalid password' });
             }
         
             const token = jwt.sign({ user: 'authenticated' }, jwtSecret, { expiresIn: tokenLifetime });
-            res.setHeader('Set-Cookie', `token=${token}; Max-Age=${tokenLifetime}; HttpOnly; Path=/; Secure`);
+            res.setHeader('Set-Cookie', `token=${token}; Max-Age=${tokenLifetime}; HttpOnly; Path=/`); //Secure`);
             return res.status(200).json({ message: 'Authenticated' });
 
         case 'DELETE':
@@ -43,4 +44,15 @@ export default async function loginHandler(req: NextApiRequest, res: NextApiResp
             res.setHeader('Allow', ['POST', 'DELETE']);
             return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
+}
+
+function safe_compare(a:string, b:string) {
+    const aBuffer = Buffer.from(a);
+    const bBuffer = Buffer.from(b);
+
+    if (aBuffer.length !== bBuffer.length) {
+        return false;
+    }
+
+    return timingSafeEqual(aBuffer, bBuffer);
 }

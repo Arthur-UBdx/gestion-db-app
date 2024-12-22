@@ -10,14 +10,17 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.4",
+    "@types/better-sqlite3": "^7.6.12",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/sqlite3": "^3.1.11",
     "axios": "^1.7.7",
+    "better-sqlite3": "^11.6.0",
     "dotenv": "^16.4.5",
     "jsonwebtoken": "^9.0.2",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
+    "sass": "^1.81.0",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {

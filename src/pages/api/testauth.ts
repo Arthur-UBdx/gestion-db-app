@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import check_token from 'lib/auth';
+import is_request_authenticated from 'lib/cookie_auth';
 
 
 export default function testauthHandler(req: NextApiRequest, res: NextApiResponse) {
@@ -8,7 +8,7 @@ export default function testauthHandler(req: NextApiRequest, res: NextApiRespons
     }
 
     if (req.method === 'GET') {
-        if (check_token(req, res)) {
+        if (is_request_authenticated(req, res)) {
             return res.status(200).json({ message: 'Authenticated' });
         }
     }

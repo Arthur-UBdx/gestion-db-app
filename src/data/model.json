@@ -1,0 +1,10 @@
+{
+    "tables": {
+        "imat": {"text": "Immatriculation", "type": "text", "sqltable": ""},
+        "modele": {"text": "Modèle", "type": "text", "sqltable": "Modeles"},
+        "expl": {"text": "Exploitant", "type": "text", "sqltable": "Exploitants"},
+        "tache": {"text": "Tâche", "type": "text", "sqltable": "Taches"},
+        "cout": {"text": "Coût", "type": "number", "sqltable": ""}
+    },
+    "referencesTablesKeys": ["expl", "modele", "tache"]
+}

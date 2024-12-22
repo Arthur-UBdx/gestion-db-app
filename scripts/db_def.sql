@@ -2,19 +2,13 @@ CREATE TABLE Exploitants (id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(
 CREATE TABLE Modeles (id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(32) NOT NULL);
 CREATE TABLE Taches (id INTEGER PRIMARY KEY AUTOINCREMENT, libelle VARCHAR(32) NOT NULL);
 
-CREATE TABLE Modele_exploitants (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Modele_FK INTEGER NOT NULL,
-    Exploitant_FK INTEGER NOT NULL,
-    FOREIGN KEY (Modele_FK) REFERENCES Modeles(id),
-    FOREIGN KEY (Exploitant_FK) REFERENCES Exploitants(id)
-);
-
 CREATE TABLE Avions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     imatriculation VARCHAR(16) NOT NULL,
-    Modele_exploitant_FK INTEGER NOT NULL,
-    FOREIGN KEY (Modele_exploitant_FK) REFERENCES Modele_exploitants(id)
+    Modele_FK INTEGER NOT NULL,
+    Exploitant_FK INTEGER NOT NULL,
+    FOREIGN KEY (Modele_FK) REFERENCES Modeles(id)
+    FOREIGN KEY (Exploitant_FK) REFERENCES Exploitants(id)
 );
 
 CREATE TABLE Maintenances (
